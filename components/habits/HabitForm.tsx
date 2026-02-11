@@ -49,7 +49,7 @@ export function HabitForm({ habit, onSuccess, trigger }: HabitFormProps) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState(habit?.name || '');
   const [description, setDescription] = useState(habit?.description || '');
-  const [category, setCategory] = useState(habit?.category || 'other');
+  const [category, setCategory] = useState<'health' | 'productivity' | 'mindfulness' | 'social' | 'other'>(habit?.category || 'other');
   const [color, setColor] = useState(habit?.color || 'indigo');
   const [active, setActive] = useState(habit?.active ?? true);
   const [errors, setErrors] = useState<{ name?: string }>({});
@@ -164,7 +164,7 @@ export function HabitForm({ habit, onSuccess, trigger }: HabitFormProps) {
           {/* Category */}
           <div className="space-y-2">
             <Label htmlFor="category">Category</Label>
-            <Select value={category} onValueChange={setCategory}>
+            <Select value={category} onValueChange={(value: 'health' | 'productivity' | 'mindfulness' | 'social' | 'other') => setCategory(value)}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
